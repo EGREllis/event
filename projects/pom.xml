@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project>
    <modelVersion>4.0.0</modelVersion>
    <groupId>root.project</groupId>
@@ -12,5 +13,6 @@
    </parent>
    <modules>
       <module>logging</module>
-   </modules>
+      <module>food</module>
+  </modules>
 </project>
