@@ -9,12 +9,12 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class TescoFetcher implements OfferFetcher {
-    private static final String TESCO_BASE = "https://www.tesco.com/groceries/en-GB/search?query=%1$s&page=%2$d";
+public class WaitroseFetcher implements OfferFetcher {
+    private static final String WAITROSE_BASE = "https://www.waitrose.com/ecom/shop/search?defaultSearch=None&searchTerm=chicken";
 
     private final OfferParser offerParser;
 
-    public TescoFetcher(OfferParser offerParser) {
+    public WaitroseFetcher(OfferParser offerParser) {
         this.offerParser = offerParser;
     }
 
@@ -28,14 +28,14 @@ public class TescoFetcher implements OfferFetcher {
         int page = 1;
         do {
             current.clear();
-            String url = String.format(TESCO_BASE, query, page);
+            String url = String.format(WAITROSE_BASE, query, page);
             System.out.println(String.format("Fetching webpage %1$d at %2$s... ", page, new Date()));
             webDriver.get(url);
             String source = webDriver.getPageSource();
             System.out.println(String.format("Fetched webpage %1$d at %2$s... ", page, new Date()));
             source = source.replaceAll("&quot;", "\"");
 
-            try (Writer chicken = new FileWriter(String.format("./tesco_chicken_page_%1$d.html", page))) {
+            try (Writer chicken = new FileWriter(String.format("./waitrose_chicken_page_%1$d.html", page))) {
                 chicken.write(source);
             }
             System.out.flush();
